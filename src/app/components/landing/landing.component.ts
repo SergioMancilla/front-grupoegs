@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CityService } from 'src/app/services/city.service';
 import { DocumentService } from 'src/app/services/document_type.service';
@@ -15,13 +16,26 @@ export class LandingComponent implements OnInit {
   users: any[] = [];
   cities: any[] = [];
   document_id_types: any[] = [];
+  filterForm: FormGroup;
 
   constructor(
     private userService: UserService,
     private cityService: CityService,
     private documentTypeService: DocumentService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {
+    this.filterForm = this.fb.group({
+      names: [''],
+      document_number: [''],
+      last_name: [''],
+      id_city: [''],
+    });
+
+    this.filterForm.valueChanges.subscribe(() => {
+      this.onSubmitFilterForm();
+    });
+  }
 
   ngOnInit(): void {
     // this.user = this.route.snapshot.paramMap.get('user');
@@ -57,6 +71,17 @@ export class LandingComponent implements OnInit {
   getDocumentTypeById(id_document_type: number) {
     const dt = this.document_id_types.find(dt => dt['id'] == id_document_type)
     return dt? dt['document_type'] : "Tipo de documento no encontrado";
+  }
+
+  onSubmitFilterForm() {
+    const formData = this.filterForm.value;
+    const { names, last_name, document_number, id_city } = formData;
+    let queryData = formData;
+    if (id_city === 0)
+      queryData = {names, last_name, document_number};
+    this.userService.filterUser(queryData).subscribe((users_filtered) => {
+      this.users = users_filtered;
+    });
   }
 
 }
