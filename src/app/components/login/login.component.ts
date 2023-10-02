@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  showBadCredentialsMessage: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       (error)=> {
-        console.log(error)
+        this.showBadCredentialsMessage = true;
       })
     }
   }

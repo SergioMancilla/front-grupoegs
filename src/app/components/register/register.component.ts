@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   cities: any[] = [];
   document_id_types: any[] = [];
   registerForm: FormGroup;
+  showBadDataMessage: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -74,7 +75,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       (error)=> {
-        console.log(error)
+        this.showBadDataMessage = true;
       })
     }
   }

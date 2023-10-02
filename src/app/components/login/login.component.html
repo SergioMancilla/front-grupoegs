@@ -7,6 +7,7 @@
             <div class="field">
                 <input type="password" id="password" formControlName="password" placeholder="Contraseña"/>
             </div>
+            <p *ngIf="showBadCredentialsMessage" class="invalid-data-text">Las credenciales son inválidas</p>
             <button class="btn-submit" type="submit"
                 [disabled]="!loginForm.valid"
                 [ngClass]="{'btn-disabled': !loginForm.valid}">Iniciar sesión</button>
