@@ -26,6 +26,10 @@ export class AuthService {
     localStorage.setItem("user", JSON.stringify({id, email}))
   }
 
+  public logout() {
+    localStorage.removeItem("user");
+  }
+
   public isAuthenticatedUser(): boolean {
     const local_user = localStorage.getItem("user")
     if (!local_user) 

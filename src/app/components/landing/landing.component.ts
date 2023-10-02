@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { CityService } from 'src/app/services/city.service';
 import { DocumentService } from 'src/app/services/document_type.service';
 import { UserService } from 'src/app/services/user.service';
@@ -22,8 +23,9 @@ export class LandingComponent implements OnInit {
     private userService: UserService,
     private cityService: CityService,
     private documentTypeService: DocumentService,
-    private route: ActivatedRoute,
-    private fb: FormBuilder
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.filterForm = this.addFilterFormValidators();
 
@@ -96,6 +98,11 @@ export class LandingComponent implements OnInit {
 
   getSesionIdUSer() {
       return JSON.parse(localStorage.getItem("user") || "{}")['id'];
+  }
+
+  signOut() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

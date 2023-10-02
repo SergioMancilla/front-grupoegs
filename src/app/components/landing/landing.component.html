@@ -1,5 +1,8 @@
 <div class="search-bar">
-    <h2 class="search-title">Búsqueda de Usuarios</h2>
+    <div class="search-nav">
+        <h2 class="search-title">Búsqueda de Usuarios</h2>
+        <button class="btn-secundary btn-logout" (click)="signOut()">Salir</button>
+    </div>
     <form class="search-form" [formGroup]="filterForm" (ngSubmit)="onSubmitFilterForm()">
         <div class="search-field">
             <label for="document_number">ID: </label>
@@ -21,9 +24,9 @@
             </select>
         </div>
     </form>
-  </div>
+</div>
   
-  <div class="users-info">
+<div class="users-info">
     <h1 class="users-title">Usuarios</h1>
     <article class="cards-container">
         <div class="card-container user-card" *ngFor="let user of users">
