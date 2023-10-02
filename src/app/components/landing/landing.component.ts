@@ -84,4 +84,10 @@ export class LandingComponent implements OnInit {
     });
   }
 
+  deleteUSer(user_id:number) {
+    this.userService.removeUser(+user_id).subscribe(user => {
+      this.getAllUsers();
+    })
+  }
+
 }

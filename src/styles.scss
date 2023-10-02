@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+* {
+    font-family: 'Montserrat', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,85,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.card-container {
+    background: rgba( 239, 233, 233, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 14px );
+    -webkit-backdrop-filter: blur( 14px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+}
+
+.btn-secundary {
+    display: block;
+    padding: 7px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    &:hover {
+        background-color: #1e7e34;
+    }
+}
+
+.btn-disabled {
+    background-color: rgba(0, 0, 0, 0.24);
+    &:hover {
+        background-color: rgba(54, 53, 53, 0.24);
+    }
+}

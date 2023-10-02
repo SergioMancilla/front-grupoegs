@@ -1,14 +1,16 @@
 <div class="container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div>
-          <label for="username">Usuario:</label>
-          <input type="text" id="username" formControlName="username" />
-        </div>
-        <div>
-          <label for="password">Contraseña:</label>
-          <input type="password" id="password" formControlName="password" />
-        </div>
-        <button type="submit" [disabled]="!loginForm.valid">Iniciar Sesión</button>
-    </form>
-    <button routerLink="/register">Registrarme</button>
+    <div class="card-container">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="field">
+                <input type="text" id="username" formControlName="username" placeholder="Usuario o email"/>
+            </div>
+            <div class="field">
+                <input type="password" id="password" formControlName="password" placeholder="Contraseña"/>
+            </div>
+            <button class="btn-submit" type="submit"
+                [disabled]="!loginForm.valid"
+                [ngClass]="{'btn-disabled': !loginForm.valid}">Iniciar sesión</button>
+        </form>
+        <button class="btn-secundary" routerLink="/register">Registrarme</button>
+    </div>
 </div>

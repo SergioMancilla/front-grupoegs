@@ -2,19 +2,19 @@
     <h2 class="search-title">Búsqueda de Usuarios</h2>
     <form class="search-form" [formGroup]="filterForm" (ngSubmit)="onSubmitFilterForm()">
         <div class="search-field">
-            <label for="document_number">Número de Documento:</label>
+            <label for="document_number">ID: </label>
             <input type="text" id="document_number" formControlName="document_number" />
         </div>
         <div class="search-field">
-            <label for="names">Nombre:</label>
+            <label for="names">Nombre: </label>
             <input type="text" id="names" formControlName="names" />
         </div>
         <div class="search-field">
-            <label for="last_name">Apellido:</label>
+            <label for="last_name">Apellido: </label>
             <input type="text" id="last_names" formControlName="last_name" />
         </div>
         <div class="search-field">
-            <label for="id_city">Ciudad:</label>
+            <label for="id_city">Ciudad: </label>
             <select id="id_city" formControlName="id_city">
             <option *ngFor="let city of cities" [value]="city['id']">{{ city['name'] }}</option>
             <option [value]="0">Todas</option>
@@ -25,19 +25,22 @@
   
   <div class="users-info">
     <h1 class="users-title">Usuarios</h1>
-    <div class="user-card" *ngFor="let user of users">
-      <div class="user-details">
-        <h3 class="user-name">{{ user['names'] }} {{user['last_name']}} {{user['middle_name']}}</h3>
-        <div class="user-info">
-          <p><strong>Fecha de Nacimiento:</strong> {{ user['born_date'] }}</p>
-          <p><strong>Tipo de Documento:</strong> {{ getDocumentTypeById(user['document_type']) }}</p>
-          <p><strong>Número de Identificación:</strong> {{ user['id_number'] }}</p>
-          <p><strong>Ciudad de Nacimiento:</strong> {{ getCityNameById(user['born_city']) }}</p>
-        </div>
-      </div>
-    </div>
+    <article class="cards-container">
+        <div class="card-container user-card" *ngFor="let user of users">
+            <div class="user-details">
+              <h3 class="user-name">{{ user['names'] }} {{user['last_name']}} {{user['middle_name']}}</h3>
+              <div class="user-info">
+                <p><strong>Fecha de Nacimiento:</strong> {{ user['born_date'] }}</p>
+                <p><strong>Tipo de Documento:</strong> {{ getDocumentTypeById(user['document_type']) }}</p>
+                <p><strong>Número de Identificación:</strong> {{ user['id_number'] }}</p>
+                <p><strong>Ciudad de Nacimiento:</strong> {{ getCityNameById(user['born_city']) }}</p>
+              </div>
+            </div>
+            <button class="delete-button" (click)="deleteUSer(user['id'])">Eliminar</button>
+          </div>
+        </article>
     <div *ngIf="users.length === 0">
-        <p>No se encontraron usuarios para el filtro indicado</p>
+        <p class="info-no-users">No se encontraron usuarios para el filtro indicado</p>
     </div>
 </div>
   
