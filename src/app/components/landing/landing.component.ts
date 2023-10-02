@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user = this.route.snapshot.paramMap.get('user');
+    // this.user = this.route.snapshot.paramMap.get('user');
     console.log(this.user);
     this.getCities();
     this.getDocumentIdTypes();
@@ -47,6 +47,16 @@ export class LandingComponent implements OnInit {
     this.documentTypeService.getDocumentTypes().subscribe(document_types => {
       this.document_id_types = document_types;
     })
+  }
+
+  getCityNameById(id_city: number) {
+    const city = this.cities.find(city => city['id'] == id_city)
+    return city? city['name'] : "Ciudad no encontrada";
+  }
+
+  getDocumentTypeById(id_document_type: number) {
+    const dt = this.document_id_types.find(dt => dt['id'] == id_document_type)
+    return dt? dt['document_type'] : "Tipo de documento no encontrado";
   }
 
 }

@@ -71,8 +71,7 @@ export class RegisterComponent implements OnInit {
         password
       }).subscribe(response => {
         console.log(response)
-        const user = response['person'];
-        this.router.navigate(['/home', user]);
+        this.router.navigate(['/home']);
       },
       (error)=> {
         console.log(error)

@@ -6,14 +6,12 @@
     <h1 class="users-title">Usuarios</h1>
     <div class="user-card" *ngFor="let user of users">
       <div class="user-details">
-        <h3 class="user-name">{{ user['names'] }}</h3>
+        <h3 class="user-name">{{ user['names'] }} {{user['last_name']}} {{user['middle_name']}}</h3>
         <div class="user-info">
-          <p><strong>Primer Apellido:</strong> {{ user['last_name'] }}</p>
-          <p><strong>Segundo Apellido:</strong> {{ user['middle_name'] }}</p>
           <p><strong>Fecha de Nacimiento:</strong> {{ user['born_date'] }}</p>
+          <p><strong>Tipo de Documento:</strong> {{ getDocumentTypeById(user['document_type']) }}</p>
           <p><strong>Número de Identificación:</strong> {{ user['id_number'] }}</p>
-          <p><strong>Tipo de Documento:</strong> {{ user['document_type'] }}</p>
-          <p><strong>Ciudad de Nacimiento:</strong> {{ user['born_city'] }}</p>
+          <p><strong>Ciudad de Nacimiento:</strong> {{ getCityNameById(user['born_city']) }}</p>
         </div>
       </div>
     </div>
