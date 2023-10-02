@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LandingComponent implements OnInit {
 
-  user: any;
+  sesion_user_id: number;
   users: any[] = [];
   cities: any[] = [];
   document_id_types: any[] = [];
@@ -25,21 +25,16 @@ export class LandingComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder
   ) {
-    this.filterForm = this.fb.group({
-      names: [''],
-      document_number: [''],
-      last_name: [''],
-      id_city: [''],
-    });
+    this.filterForm = this.addFilterFormValidators();
 
     this.filterForm.valueChanges.subscribe(() => {
       this.onSubmitFilterForm();
     });
+
+    this.sesion_user_id = this.getSesionIdUSer();
   }
 
   ngOnInit(): void {
-    // this.user = this.route.snapshot.paramMap.get('user');
-    console.log(this.user);
     this.getCities();
     this.getDocumentIdTypes();
     this.getAllUsers();
@@ -88,6 +83,19 @@ export class LandingComponent implements OnInit {
     this.userService.removeUser(+user_id).subscribe(user => {
       this.getAllUsers();
     })
+  }
+
+  addFilterFormValidators() {
+    return this.fb.group({
+      names: [''],
+      document_number: [''],
+      last_name: [''],
+      id_city: [''],
+    });
+  }
+
+  getSesionIdUSer() {
+      return JSON.parse(localStorage.getItem("user") || "{}")['id'];
   }
 
 }

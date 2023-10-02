@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
         email,
         password
       }).subscribe(response => {
-        console.log(response)
+        this.authService.onLogin(response['person']);
         this.router.navigate(['/home']);
       },
       (error)=> {

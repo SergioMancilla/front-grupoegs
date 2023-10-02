@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAuthUser } from '../interfaces/IUser';
+import { IAuthUser, IUserData } from '../interfaces/IUser';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,11 @@ export class AuthService {
       "user": auth_user['user'],
       "password": auth_user['password']
     })
+  }
+
+  public onLogin(user: IUserData) {
+    const { id, email } = user;
+    localStorage.setItem("user", JSON.stringify({id, email}))
   }
 
 }

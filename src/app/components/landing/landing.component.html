@@ -36,7 +36,7 @@
                 <p><strong>Ciudad de Nacimiento:</strong> {{ getCityNameById(user['born_city']) }}</p>
               </div>
             </div>
-            <button class="delete-button" (click)="deleteUSer(user['id'])">Eliminar</button>
+            <button *ngIf="user['id'] != sesion_user_id" class="delete-button" (click)="deleteUSer(user['id'])">Eliminar</button>
           </div>
         </article>
     <div *ngIf="users.length === 0">
