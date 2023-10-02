@@ -1,2 +1,4 @@
-# front-grupoegs
-Frontend en Angular para la prueba técnica de la empresa Grupo EGS
+# Pasos para la ejecución del cliente:
+- Clonar el proyecto
+- Ejecutar el comando ```npm install``` en la carpeta raíz del proyecto
+- Ejecutar el comando ```npm start```
